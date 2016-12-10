@@ -211,6 +211,7 @@ kube::multinode::start_k8s_master() {
     gcr.io/google_containers/hyperkube-${ARCH}:${K8S_VERSION} \
     /hyperkube kubelet \
       --allow-privileged \
+      --cloud-provider=aws \
       --api-servers=http://localhost:8080 \
       --config=/etc/kubernetes/manifests-multi \
       --cluster-dns=10.0.0.10 \
@@ -239,6 +240,7 @@ kube::multinode::start_k8s_worker() {
     gcr.io/google_containers/hyperkube-${ARCH}:${K8S_VERSION} \
     /hyperkube kubelet \
       --allow-privileged \
+      --cloud-provider=aws \
       --api-servers=http://${MASTER_IP}:8080 \
       --cluster-dns=10.0.0.10 \
       --cluster-domain=cluster.local \
